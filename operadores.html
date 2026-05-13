@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guia Completo de Operadores JavaScript</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    header{
+      background: linear-gradient(135deg,hsl(278, 42%, 38%));
+      padding:40px;
+      text-align:center;
+      box-shadow:0 4px 20px rgba(0,0,0,.4);
+    }
+
+    header h1{
+      font-size:3rem;
+      margin-bottom:10px;
+    }
+
+    header p{
+      color:#e2e8f0;
+      font-size:1.1rem;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+      padding:40px 0;
+    }
+
+    .menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      justify-content:center;
+      margin-bottom:40px;
+    }
+
+    .menu button{
+      padding:12px 20px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      background:#1e293b;
+      color:white;
+      transition:.3s;
+      font-weight:bold;
+      font-size:15px;
+    }
+
+    .menu button:hover{
+      background:hsl(278, 42%, 38%);
+      transform:translateY(-3px);
+    }
+
+    .card{
+      background:#1e293b;
+      border-radius:20px;
+      padding:30px;
+      margin-bottom:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,.3);
+      animation:fade .5s;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .card h2{
+      margin-bottom:20px;
+      color:hsl(278, 42%, 38%);
+      font-size:2rem;
+    }
+
+    .descricao{
+      margin-bottom:20px;
+      line-height:1.7;
+      color:#cbd5e1;
+    }
+
+    .code{
+      background:#0f172a;
+      border-left:5px solid hsl(278, 42%, 38%);
+      padding:20px;
+      border-radius:10px;
+      margin:20px 0;
+      overflow:auto;
+    }
+
+    code{
+      color:hsl(278, 42%, 38%);
+      font-size:15px;
+    }
+
+    .resultado{
+      background:#111827;
+      padding:15px;
+      border-radius:10px;
+      margin-top:15px;
+      color:#ffffff;
+      font-weight:bold;
+      min-height:50px;
+    }
+
+    .executar{
+      background:linear-gradient(135deg,hsl(278, 42%, 38%));
+      border:none;
+      padding:12px 20px;
+      border-radius:10px;
+      color:white;
+      cursor:pointer;
+      font-weight:bold;
+      transition:.3s;
+    }
+
+    .executar:hover{
+      transform:scale(1.05);
+    }
+
+    footer{
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:5px 12px;
+      border-radius:999px;
+      background:hsl(278, 42%, 38%);
+      margin-bottom:15px;
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:20px;
+    }
+
+    .mini-card{
+      background:#111827;
+      padding:20px;
+      border-radius:15px;
+      transition:.3s;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-5px);
+      background:#172033;
+    }
+
+    .quiz{
+      margin-top:20px;
+    }
+
+    .quiz button{
+      width:100%;
+      margin-top:10px;
+      background:#334155;
+    }
+
+    .acerto{
+      color:hsl(112, 32%, 43%);
+      margin-top:15px;
+      font-weight:bold;
+    }
+
+    .erro{
+      color:hsl(0, 47%, 40%);
+      margin-top:15px;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Operadores JavaScript</h1>
+  <p>Aprenda operadores de forma visual, prática e interativa</p>
+</header>
+
+<div class="container">
+
+  <div class="menu">
+    <button onclick="rolar('aritmeticos')">Aritméticos</button>
+    <button onclick="rolar('comparacao')">Comparação</button>
+    <button onclick="rolar('logicos')">Lógicos</button>
+    <button onclick="rolar('atribuicao')">Atribuição</button>
+    <button onclick="rolar('ternario')">Ternário</button>
+    <button onclick="rolar('quiz')">Quiz</button>
+  </div>
+
+  <!-- ARITMETICOS -->
+  <section class="card" id="aritmeticos">
+    <div class="badge">Operadores Matemáticos</div>
+    <h2>Aritméticos</h2>
+
+    <p class="descricao">
+      Usados para realizar cálculos matemáticos.
+    </p>
+
+    <div class="grid">
+
+      <div class="mini-card">
+        <h3>Soma (+)</h3>
+
+        <div class="code">
+          <code>
+            let resultado = 10 + 5;
+          </code>
+        </div>
+
+        <button class="executar" onclick="somar()">
+          Executar
+        </button>
+
+        <div class="resultado" id="r1"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Multiplicação (*)</h3>
+
+        <div class="code">
+          <code>
+            let resultado = 4 * 3;
+          </code>
+        </div>
+
+        <button class="executar" onclick="multiplicar()">
+          Executar
+        </button>
+
+        <div class="resultado" id="r2"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Resto (%)</h3>
+
+        <div class="code">
+          <code>
+            let resultado = 10 % 3;
+          </code>
+        </div>
+
+        <button class="executar" onclick="resto()">
+          Executar
+        </button>
+
+        <div class="resultado" id="r3"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARAÇÃO -->
+  <section class="card" id="comparacao">
+
+    <div class="badge">Booleanos</div>
+
+    <h2>Comparação</h2>
+
+    <p class="descricao">
+      Retornam <strong>true</strong> ou <strong>false</strong>.
+    </p>
+
+    <div class="code">
+      <code>
+        10 === "10"
+      </code>
+    </div>
+
+    <button class="executar" onclick="comparar()">
+      Executar
+    </button>
+
+    <div class="resultado" id="comparacaoResultado"></div>
+
+  </section>
+
+  <!-- LOGICOS -->
+  <section class="card" id="logicos">
+
+    <div class="badge">Condições</div>
+
+    <h2>Operadores Lógicos</h2>
+
+    <div class="grid">
+
+      <div class="mini-card">
+        <h3>AND (&&)</h3>
+
+        <div class="code">
+          <code>
+            idade >= 18 && temCarteira
+          </code>
+        </div>
+
+        <button class="executar" onclick="logicoAnd()">
+          Testar
+        </button>
+
+        <div class="resultado" id="and"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>OR (||)</h3>
+
+        <div class="code">
+          <code>
+            false || true
+          </code>
+        </div>
+
+        <button class="executar" onclick="logicoOr()">
+          Testar
+        </button>
+
+        <div class="resultado" id="or"></div>
+      </div>
+
+      <div class="mini-card">
+        <h3>NOT (!)</h3>
+
+        <div class="code">
+          <code>
+            !true
+          </code>
+        </div>
+
+        <button class="executar" onclick="logicoNot()">
+          Testar
+        </button>
+
+        <div class="resultado" id="not"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ATRIBUIÇÃO -->
+  <section class="card" id="atribuicao">
+
+    <div class="badge">Variáveis</div>
+
+    <h2>Operadores de Atribuição</h2>
+
+    <div class="code">
+      <code>
+        let numero = 10;
+        <br><br>
+        numero += 5;
+      </code>
+    </div>
+
+    <button class="executar" onclick="atribuir()">
+      Executar
+    </button>
+
+    <div class="resultado" id="atribuirResultado"></div>
+
+  </section>
+
+  <!-- TERNARIO -->
+  <section class="card" id="ternario">
+
+    <div class="badge">Atalho do IF</div>
+
+    <h2>Operador Ternário</h2>
+
+    <div class="code">
+      <code>
+        idade >= 18 ? "Maior" : "Menor"
+      </code>
+    </div>
+
+    <button class="executar" onclick="ternario()">
+      Executar
+    </button>
+
+    <div class="resultado" id="ternarioResultado"></div>
+
+  </section>
+
+  <!-- QUIZ -->
+  <section class="card" id="quiz">
+
+    <div class="badge">Teste seu conhecimento</div>
+
+    <h2>Quiz JavaScript</h2>
+
+    <p>
+      Qual operador verifica valor E tipo?
+    </p>
+
+    <div class="quiz">
+      <button class="executar" onclick="errado()">
+        ==
+      </button>
+
+      <button class="executar" onclick="certo()">
+        ===
+      </button>
+
+      <button class="executar" onclick="errado()">
+        !=
+      </button>
+
+      <div id="quizResultado"></div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  Desenvolvido com HTML, CSS e JavaScript
+</footer>
+
+<script>
+
+  function rolar(id){
+    document.getElementById(id)
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+  }
+
+  function somar(){
+    document.getElementById("r1")
+      .innerHTML = "10 + 5 = 15";
+  }
+
+  function multiplicar(){
+    document.getElementById("r2")
+      .innerHTML = "4 * 3 = 12";
+  }
+
+  function resto(){
+    document.getElementById("r3")
+      .innerHTML = "10 % 3 = 1";
+  }
+
+  function comparar(){
+
+    let resultado = 10 === "10";
+
+    document.getElementById(
+      "comparacaoResultado"
+    ).innerHTML =
+      "10 === '10' = " + resultado;
+
+  }
+
+  function logicoAnd(){
+
+    let idade = 20;
+    let temCarteira = true;
+
+    let podeDirigir =
+      idade >= 18 && temCarteira;
+
+    document.getElementById("and")
+      .innerHTML =
+      "Pode dirigir? " + podeDirigir;
+
+  }
+
+  function logicoOr(){
+
+    document.getElementById("or")
+      .innerHTML =
+      "false || true = " + (false || true);
+
+  }
+
+  function logicoNot(){
+
+    document.getElementById("not")
+      .innerHTML =
+      "!true = " + (!true);
+
+  }
+
+  function atribuir(){
+
+    let numero = 10;
+
+    numero += 5;
+
+    document.getElementById(
+      "atribuirResultado"
+    ).innerHTML =
+      "Resultado final: " + numero;
+
+  }
+
+  function ternario(){
+
+    let idade = 16;
+
+    let resultado =
+      idade >= 18
+      ? "Maior de idade"
+      : "Menor de idade";
+
+    document.getElementById(
+      "ternarioResultado"
+    ).innerHTML =
+      resultado;
+
+  }
+
+  function certo(){
+
+    document.getElementById(
+      "quizResultado"
+    ).innerHTML =
+      "<div class='acerto'>✔ Correto! O operador === compara valor e tipo.</div>";
+
+  }
+
+  function errado(){
+
+    document.getElementById(
+      "quizResultado"
+    ).innerHTML =
+      "<div class='erro'>✖ Resposta errada.</div>";
+
+  }
+
+</script>
+
+</body>
+</html>
